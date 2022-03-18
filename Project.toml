@@ -1,0 +1,10 @@
+name = "GraphQL"
+uuid = "ac83fe23-e810-44bc-bed7-ce014c22d7c0"
+authors = ["Jim Hill"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
