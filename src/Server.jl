@@ -5,17 +5,18 @@ import Base.LibuvServer
 using HTTP, Sockets, JSON
 using ..Types, ..Execute
 
-struct ServerData
-  socket::LibuvServer
+struct ServerStatus
+  server::LibuvServer
   address::String
+  config::ServerConfiguration
 end
 
 function parsePayload(payload)
   return ExecutionArgs("TODO")
 end
 
-function serve(port)
-  server = Sockets.listen(Sockets.InetAddr(Sockets.localhost, port))
+function serve(config=ServerConfiguration())
+  server = Sockets.listen(Sockets.InetAddr(Sockets.localhost, config.port))
   @async HTTP.serve(server=server) do request::HTTP.Request    
     try
       payload = String(HTTP.payload(request))
@@ -26,7 +27,7 @@ function serve(port)
       return HTTP.Response(500, "Something went wrong. Please open an issue to resolve.")
     end
  end
- return ServerData(server,"$(Sockets.localhost):$port")
+ return ServerStatus(server,"$(Sockets.localhost):$(config.port)",config)
 end
 
 end

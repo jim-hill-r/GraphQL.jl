@@ -2,7 +2,7 @@ using Test, Sockets, HTTP, JSON
 using GraphQL
 
 function before()
-  return GraphQL.serve(8080)
+  return GraphQL.serve()
 end
 
 function testPing(server)
@@ -12,7 +12,7 @@ function testPing(server)
 end
 
 function after(server)
-  close(server.socket)
+  close(server.server)
 end
 
 @testset "Server" begin

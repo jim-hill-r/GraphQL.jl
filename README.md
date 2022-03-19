@@ -11,16 +11,21 @@ Pkg.add(url="https://github.com/jim-hill-r/graphql.jl.git")
 ```
 
 ## Server
-To run a graphql server with the minimum configuration assuming you have typedefs in a typedefs.graphql file.
+Start the sample server with one healthcheck endpoint:
 ```julia
 using GraphQL
-
-typedefs = read("./typedefs.graphql",String)
-config = ServerConfiguration(
-  typedefs = typedefs
-)
-serve(config)
+GraphQL.serve()
 ```
+
+Basic server using predefined typedefs:
+```julia
+using GraphQL
+GraphQL.serve(ServerConfiguration(
+  typedefs = read("./typedefs.graphql", String)
+))
+```
+
+Find more configuration options in [Server Docs](./docs/server.md)
 
 ## Client
 Coming soon!
