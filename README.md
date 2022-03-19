@@ -14,13 +14,13 @@ Pkg.add(url="https://github.com/jim-hill-r/graphql.jl.git")
 Start the sample server with one healthcheck endpoint:
 ```julia
 using GraphQL
-GraphQL.serve()
+GraphQLServer()
 ```
 
-Basic server using predefined typedefs:
+Basic server using custom typedefs file:
 ```julia
 using GraphQL
-GraphQL.serve(ServerConfiguration(
+GraphQLServer(ServerConfiguration(
   typedefs = read("./typedefs.graphql", String)
 ))
 ```
@@ -28,7 +28,29 @@ GraphQL.serve(ServerConfiguration(
 Find more configuration options in [Server Docs](./docs/server.md)
 
 ## Client
-Coming soon!
+Query the sample server with default ping query:
+```julia
+using GraphQL
+client = GraphQLClient("http://localhost:3968")
+query(client,QueryOptions())
+```
+
+Query the sample server with custom query:
+```julia
+using GraphQL
+client = GraphQLClient("http://localhost:3968")
+queryString = """
+query Ping {
+  healthcheck {
+    ping
+  }
+}
+"""
+query(client,QueryOptions(
+  query = queryString
+))
+
+```
 
 ## Schema Tools
 Coming soon!
@@ -45,3 +67,4 @@ Coming soon!
 ## Eventually
 - [ ] Server: Subscriptions
 - [ ] Client: Subscriptions
+- [ ] Schema Tools

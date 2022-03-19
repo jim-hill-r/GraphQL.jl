@@ -1,5 +1,6 @@
 module GraphQL
-  export serve
+  export GraphQLServer
+  export GraphQLClient, QueryOptions, query
 
   include("./Types.jl")     ;using .Types
   include("./Execute.jl")   ;using .Execute

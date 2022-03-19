@@ -2,7 +2,8 @@ using Test, Sockets, HTTP, JSON
 using GraphQL
 
 function before()
-  return GraphQL.serve()
+  server = GraphQLServer()
+  return Dict("server" => server)
 end
 
 function testPing(server)
@@ -17,7 +18,7 @@ end
 
 @testset "Server" begin
   @info "Running server tests..."
-  server = before()
-  @test testPing(server)
-  after(server)
+  fixture = before()
+  @test testPing(fixture["server"])
+  after(fixture["server"])
 end
