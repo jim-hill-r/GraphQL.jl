@@ -7,11 +7,20 @@ This is a personal hobby project designed to extend my knowledge of Julia and Gr
 ## Install
 ```julia
 using Pkg
-Pkg.add("https://github.com/jim-hill-r/graphql.jl.git")
+Pkg.add(url="https://github.com/jim-hill-r/graphql.jl.git")
 ```
 
 ## Server
-Coming soon!
+To run a graphql server with the minimum configuration assuming you have typedefs in a typedefs.graphql file.
+```julia
+using GraphQL
+
+typedefs = read("./typedefs.graphql",String)
+config = ServerConfiguration(
+  typedefs = typedefs
+)
+serve(config)
+```
 
 ## Client
 Coming soon!
