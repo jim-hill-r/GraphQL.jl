@@ -9,7 +9,7 @@ end
 
 function testPing(client)
   data = query(client)
-  return get(data,"TODO",nothing) === "TODO"
+  @test get(data,"TODO",nothing) === "TODO"
 end
 
 function after(server)
@@ -19,6 +19,6 @@ end
 @testset "Server" begin
   @info "Running server tests..."
   fixture = before()
-  @test testPing(fixture["client"])
+  testPing(fixture["client"])
   after(fixture["server"])
 end

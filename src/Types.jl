@@ -4,6 +4,7 @@ export GraphQLSchema
 export ExecutionArgs
 export AbstractGraphQLServer, GraphQLServer, ServerConfiguration
 export AbstractGraphQLClient, GraphQLClient, QueryOptions
+export DEFAULT_QUERY, DEFAULT_TYPEDEFS
 
 import Base.LibuvServer
 
